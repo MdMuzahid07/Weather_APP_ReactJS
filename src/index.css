@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  background-color: #b5d8ff;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+.main_container {
+  width: 1000px;
+  empty-cells: 700px;
+}
+
+.dashboard {
+  background-color: #e4f1ff;
+}
+
+.bg-img {
+  background-image: url("https://img.freepik.com/free-vector/nature-scene-with-river-hills-forest-mountain-landscape-flat-cartoon-style-illustration_1150-37326.jpg?w=1380&t=st=1662826065~exp=1662826665~hmac=9a71fbb78f6b249feaa9d4b2062ad12a5cdae2fc8d09e56683c4c5f78d7c6293");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
