@@ -30,3 +30,12 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+
+.theme_color {
+  color: rgb(4 120 87);
+}
+
+.theme_bg {
+  background-color: rgb(4 120 87);
+}
