@@ -30,3 +30,7 @@ body {
   background-size: cover;
   background-position: center;
 }
+
+.dashboard_icon_bg {
+  background-color: #49C0A4;
+}
