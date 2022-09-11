@@ -3,7 +3,7 @@ import React from 'react';
 
 const WeatherSlider = () => {
     return (
-        <div className='mt-20 mb-10 md:mb-0'>
+        <div className='mt-10 mb-10 md:mb-0'>
             <Carousel
                 renderCenterLeftControls={({ previousSlide }) => (
                     <button onClick={previousSlide}>
