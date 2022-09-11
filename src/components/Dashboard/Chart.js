@@ -60,8 +60,6 @@ const data = [
 
 
 const Chart = () => {
-    const demoUrl = 'https://codesandbox.io/s/composed-chart-in-responsive-container-pkqmy';
-
     return (
         <div className='bg-white rounded-3xl' style={{ width: '100%', height: 200 }}>
             <ResponsiveContainer>
