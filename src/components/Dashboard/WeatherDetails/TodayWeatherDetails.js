@@ -91,8 +91,13 @@ const TodayWeatherDetails = () => {
                         <p>Feels like</p>
                         <svg className='bg-success rounded' xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="M10.979 9.417v-1.75h3.896v1.75Zm0-3.5v-1.75H17.5v1.75ZM6.771 17.5q-1.729 0-3-1.24Q2.5 15.021 2.5 13.25q0-1 .417-1.875.416-.875 1.208-1.479V5.125q0-1.104.771-1.865.771-.76 1.854-.76 1.104 0 1.865.76.76.761.76 1.865v4.771q.792.604 1.208 1.479.417.875.417 1.875 0 1.771-1.26 3.01-1.261 1.24-2.969 1.24ZM4.25 13.25h5q0-.604-.25-1.115-.25-.51-.75-.885l-.625-.479V5.125q0-.354-.26-.615-.261-.26-.615-.26t-.615.26q-.26.261-.26.615v5.646l-.625.479q-.5.375-.75.885-.25.511-.25 1.115Z" fill="#ffffff" /></svg>
                     </div>
-                    <h2 className='text-xl text-center font-bold my-3'><span>82</span>%<span>Bad</span></h2>
-                    <progress className="progress progress-success" value="82" max="100"></progress>
+                    <h2 className='text-xl text-center font-bold my-3'><span>32</span><sup>o</sup></h2>
+                    <div className="w-full flex justify-between text-xs">
+                        <span>0<sup>o</sup></span>
+                        <span>25<sup>o</sup></span>
+                        <span>50<sup>o</sup></span>
+                    </div>
+                    <progress className="progress progress-success" value="66.33" max="100"></progress>
                 </div>
             </div>
 
@@ -103,8 +108,15 @@ const TodayWeatherDetails = () => {
                         <p>Chance of rain</p>
                         <svg className='bg-success rounded' xmlns="http://www.w3.org/2000/svg" height="20" width="20"><path d="m16.271 17.5-5.209-5.229 1.209-1.25L17.5 16.25Zm-11.209-.542q-1.291-1.27-1.916-2.843t-.625-3.198q0-1.625.604-3.157.604-1.531 1.854-2.781 1.25-1.25 2.781-1.854 1.532-.604 3.157-.604 1.666 0 3.239.635 1.573.636 2.823 1.906Zm.167-2.646 1.063-1.041q-.334-.438-.625-.886-.292-.447-.532-.906-.239-.458-.427-.927-.187-.469-.333-.927-.208 1.292 0 2.49.208 1.197.854 2.197Zm2.333-2.27 4.5-4.542q-.895-.667-1.781-1.083Q9.396 6 8.615 5.833q-.782-.166-1.396-.073-.615.094-.969.448-.354.375-.448 1-.094.625.073 1.407.167.781.583 1.666.417.886 1.104 1.761Zm5.709-5.75 1.104-1.063q-1.125-.687-2.333-.885-1.209-.198-2.396.031.437.125.896.302.458.177.906.417.448.239.906.541.458.303.917.657Z" fill="#ffffff" /></svg>
                     </div>
-                    <h2 className='text-xl text-center font-bold my-3'><span>82</span>%<span>Bad</span></h2>
-                    <progress className="progress progress-success" value="82" max="100"></progress>
+                    <h2 className='text-xl text-center font-bold my-3'><span>42</span>%</h2>
+                    <div className="w-full flex justify-between text-xs">
+                        <span>0%</span>
+                        <span>25%</span>
+                        <span>50%</span>
+                        <span>75%</span>
+                        <span>100%</span>
+                    </div>
+                    <progress className="progress progress-success" value="42" max="100"></progress>
                 </div>
             </div>
 
