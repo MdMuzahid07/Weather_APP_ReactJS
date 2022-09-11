@@ -14,41 +14,53 @@ import {
 
 const data = [
     {
-        name: 'Page A',
+        name: 'h/1',
         uv: 590,
         pv: 800,
-        amt: 1400,
+        temp: 20.00,
     },
     {
-        name: 'Page B',
+        name: 'h/2',
         uv: 868,
         pv: 967,
-        amt: 1506,
+        temp: 21,
     },
     {
-        name: 'Page C',
+        name: 'h/3',
         uv: 1397,
         pv: 1098,
-        amt: 989,
+        temp: 22,
     },
     {
-        name: 'Page D',
+        name: 'h/4',
         uv: 1480,
         pv: 1200,
-        amt: 1228,
+        temp: 25
     },
     {
-        name: 'Page E',
+        name: 'h/5',
         uv: 1520,
         pv: 1108,
-        amt: 1100,
+        temp: 34,
     },
     {
-        name: 'Page F',
+        name: 'h/6',
         uv: 1400,
         pv: 680,
-        amt: 1700,
+        temp: 30,
     },
+    {
+        name: 'h/7',
+        uv: 1400,
+        pv: 680,
+        temp: 27,
+    },
+    {
+        name: 'h/8',
+        uv: 1400,
+        pv: 680,
+        temp: 22,
+    }
 ];
 
 
@@ -75,7 +87,7 @@ const Chart = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
+                    <Area type="monotone" dataKey="temp" fill="#8884d8" stroke="#8884d8" />
                     <Bar dataKey="pv" barSize={20} fill="#413ea0" />
                     <Line type="monotone" dataKey="uv" stroke="#ff7300" />
                 </ComposedChart>
