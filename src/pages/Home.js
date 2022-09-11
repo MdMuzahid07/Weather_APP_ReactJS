@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Dashboard/Header';
 import WeatherLocation from '../components/WeatherView/WeatherLocation';
 import WeatherViewHeader from '../components/WeatherView/WeatherViewHeader';
+import WeatherSlider from '../components/WeatherView/WeatherSlider';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <div className='md:w-1/4 p-5 text-white'>
                 <WeatherViewHeader />
                 <WeatherLocation />
+                <WeatherSlider />
             </div>
             <div className='dashboard md:w-3/4 p-7 rounded-3xl'>
                 <Header />
