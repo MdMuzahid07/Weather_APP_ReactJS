@@ -55,12 +55,6 @@ const data = [
         pv: 680,
         temp: 27,
     },
-    {
-        name: 'h/8',
-        uv: 1400,
-        pv: 680,
-        temp: 22,
-    }
 ];
 
 
