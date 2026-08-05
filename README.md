@@ -9,6 +9,7 @@
     <a href="#tech-stack"><img src="https://img.shields.io/badge/TypeScript-5.7-3178C6?style=for-the-badge&logo=typescript" alt="TypeScript 5" /></a>
     <a href="#tech-stack"><img src="https://img.shields.io/badge/PWA-Workbox-4285F4?style=for-the-badge&logo=pwa" alt="PWA Workbox" /></a>
     <a href="#tech-stack"><img src="https://img.shields.io/badge/Tailwind-3.4-38BDF8?style=for-the-badge&logo=tailwindcss" alt="Tailwind CSS" /></a>
+    <a href="#security--standards"><img src="https://img.shields.io/badge/OWASP-ASVS%20Level%202-00599C?style=for-the-badge&logo=owasp" alt="OWASP ASVS" /></a>
   </p>
 </div>
 
@@ -19,87 +20,95 @@
 **Enterprise Weather App** is a state-of-the-art Progressive Web App (PWA) built with **React 18**, **TypeScript 5**, **Vite 5**, **Zustand 5**, and **Tailwind CSS 3**. Powered by the 100% free **Open-Meteo Weather API**, it delivers hyper-local forecasts worldwide with **zero API keys required**, eliminating client-side secret leakage risks entirely.
 
 Engineered with enterprise design principles:
-- **Zero-Scroll Viewport**: Perfectly fits desktop and laptop screens with zero awkward container scrollbars.
-- **Offline-First Architecture**: Service Worker caching guarantees weather visibility even when disconnected from the internet.
-- **Zero Cumulative Layout Shift (CLS = 0)**: 1-to-1 exact structural shimmer skeletons eliminate UI layout jumps during data fetching.
+- **Zero-Scroll Viewport**: Optimized layout fitting standard desktop and laptop viewports seamlessly.
+- **Offline-First Architecture**: Consolidated Workbox service worker caching guarantees weather visibility even when disconnected.
+- **Zero Cumulative Layout Shift (CLS = 0)**: Precise structural shimmer skeletons eliminate layout jumps during data fetching.
 - **Adaptive Dark & Light Glassmorphism**: High-contrast glassmorphic design system with ambient hero mesh grid patterns.
+- **Hardened Security Posture**: Audited against OWASP Top 10 & ASVS Level 2 with comprehensive Vercel HTTP security headers and strict CSP.
 
 ---
 
 ## ✨ Key Features & Innovations
 
 ### 🌦️ 100% Free & Keyless Weather Engine
-Integrated with **Open-Meteo Geocoding & Forecast APIs** (`https://api.open-meteo.com` & `https://geocoding-api.open-meteo.com`). Allows up to 10,000 free requests per day without requiring API keys or secret proxy servers.
+Integrated with **Open-Meteo Geocoding & Forecast APIs** (`https://api.open-meteo.com` & `https://geocoding-api.open-meteo.com`). Allows up to 10,000 free requests per day without requiring API keys, tokens, or secret proxy servers.
 
-### 📱 Enterprise PWA & Offline Support
-- **Workbox Caching**: Pre-caches core app shell (`/index.html`, `/manifest.json`, `/icon.svg`).
-- **NetworkFirst Strategy**: Fetches live weather with a 5-second network timeout fallback to cached responses.
+### 📱 Consolidated PWA & Offline Support
+- **Workbox Caching**: Pre-caches core app assets with automatic runtime lifecycle management.
+- **Runtime Expiration Rules**: Enforces explicit TTLs (`maxAgeSeconds: 7200` for forecasts, `604800` for geocoding) preventing stale cache accumulation.
 - **Installable**: Full W3C Web App Manifest compliance for native installation on iOS, Android, macOS, and Windows.
-- **Offline Status Indicator**: Live status pill in the top header displaying exact cached sync timestamps when offline.
+- **Auto-Update Lifecycle**: `virtual:pwa-register` ensures immediate background updates without stranding users on stale versions.
 
 ### 💡 Actionable Weather Insights Engine
 Translates raw meteorological metrics into actionable human advice:
-- 👕 **Clothing Recommendation**: Thermal layers vs. light breathable cotton based on temperature thresholds.
-- 🏃 **Outdoor Activity Score**: 1-to-10 outdoor workout index incorporating rain, wind gust, and UV metrics.
-- 🌧️ **Rain Warning Alert**: Proactive umbrella notifications when precipitation probability exceeds 40%.
-- ☀️ **Sun Care Advice**: UV index guidance (SPF sunscreen & sunglasses reminders).
+- 👕 **Clothing Recommendation**: Thermal layers vs. light breathable fabrics based on apparent temperature thresholds.
+- 🏃 **Outdoor Activity Score**: 1-to-10 outdoor workout index incorporating rain probability, wind speed, and UV metrics.
+- 🌧️ **Rain Warning Alert**: Proactive notifications when precipitation probability exceeds 40%.
+- ☀️ **Sun Care Advice**: UV index guidance with SPF sunscreen and sunglasses recommendations.
 
 ### 📊 Interactive 24-Hour Forecast Breakdown
-Custom Recharts visualization with metric tab controls:
+Custom Recharts visualization with interactive metric tab controls:
 - **Temperature Curve (°C / °F)**: Smooth gradient area chart.
 - **Rain Probability (%)**: Column bar breakdown.
-- **UV Index**: Solar intensity tracking with dynamic custom tooltips.
+- **UV Index**: Solar intensity tracking with dynamic tooltips.
 
 ### 🎨 Dark & Light Glassmorphism UI
-- **Dark Mode**: Midnight obsidian (`#070A12`) backdrop with cyan/indigo radial mesh grid patterns.
+- **Dark Mode**: Midnight obsidian (`#080C14`) backdrop with cyan/indigo radial mesh patterns.
 - **Light Mode**: Crisp sky blue (`#E2EBF8`) backdrop with high-contrast slate typography (`#0F172A`).
-- **Hero Sidebar**: Local vector pine forest & mountain landscape SVG background (`/hero-landscape.svg`).
+- **Smooth Theming**: Instant theme toggling persisted safely to `localStorage`.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## 🛠️ Project Structure
 
 ```
 weather_app/
 ├── public/
-│   ├── hero-landscape.svg    # Guaranteed local vector hero landscape
-│   ├── icon.svg              # Custom 100% original PWA vector icon
+│   ├── icon.svg              # Original PWA vector icon
+│   ├── favicon.ico           # Legacy fallback favicon
 │   ├── manifest.json         # Web App Manifest specification
-│   ├── sw.js                 # Workbox Service Worker caching script
-│   └── robots.txt
+│   ├── robots.txt
+│   └── sw.js                 # Service worker placeholder (generated by VitePWA)
 ├── src/
 │   ├── components/
 │   │   ├── Dashboard/
 │   │   │   ├── WeatherDetails/
-│   │   │   │   └── TodayWeatherDetails.tsx   # 6 Dark glass metric cards
-│   │   │   ├── Chart.tsx                     # Recharts 24-hour breakdown
-│   │   │   ├── Header.tsx                    # Top header & offline banner
-│   │   │   └── WeatherSummaryCard.tsx        # Smart Insights cards
+│   │   │   │   └── TodayWeatherDetails.jsx   # 6 Dark glass metric cards
+│   │   │   ├── Chart.jsx                     # Recharts 24-hour breakdown
+│   │   │   ├── Header.jsx                    # Top header & GPS trigger
+│   │   │   └── WeatherSummaryCard.jsx        # Smart Insights cards
 │   │   ├── WeatherView/
-│   │   │   ├── WeatherLocation.tsx           # City name, date, sunrise/sunset
-│   │   │   ├── WeatherSlider.tsx             # Temperature hero & 7-day forecast
-│   │   │   └── WeatherViewHeader.tsx         # Searchbar & °C/°F switcher
-│   │   ├── ErrorBoundary.tsx                 # Widget error boundary wrapper
-│   │   ├── SearchModal.tsx                   # City search modal with GPS button
-│   │   └── WeatherIcon.tsx                   # Animated Lucide weather icon
+│   │   │   ├── WeatherLocation.jsx           # City name, date, sunrise/sunset
+│   │   │   ├── WeatherSlider.jsx             # Temperature hero & 7-day forecast
+│   │   │   └── WeatherViewHeader.jsx         # Searchbar & °C/°F switcher
+│   │   ├── ErrorBoundary.tsx                 # React error boundary wrapper
+│   │   ├── SearchModal.jsx                   # City search modal with GPS button
+│   │   └── WeatherIcon.jsx                   # Animated Lucide weather icon
+│   ├── context/
+│   │   └── WeatherContext.tsx                # Context provider wrapper
 │   ├── services/
 │   │   ├── weatherService.ts                 # Typed Open-Meteo API client
-│   │   └── weatherInsights.ts                # Decision-oriented advice engine
+│   │   └── weatherInsights.ts                # Actionable advice engine
 │   ├── store/
 │   │   └── useWeatherStore.ts                # Typed Zustand store
 │   ├── types/
 │   │   └── weather.ts                        # TypeScript interfaces & contracts
-│   ├── App.tsx                               # Root wrapper with web-vitals
-│   ├── index.css                             # Glassmorphism & Hero Mesh CSS
-│   ├── index.tsx                             # Entry point & SW registration
-│   └── reportWebVitals.ts                    # Web Vitals v4 performance monitor
-├── vite.config.ts                            # Vite 5 + PWA + Compression config
-├── tsconfig.json                             # Strict TypeScript config
+│   ├── vite-env.d.ts                         # Vite & PWA type declarations
+│   ├── App.jsx                               # Root application component
+│   ├── index.css                             # Glassmorphism & design system tokens
+│   ├── index.jsx                             # Application entry point
+│   ├── registerServiceWorker.js              # PWA service worker registration
+│   └── reportWebVitals.jsx                   # Web Vitals performance telemetry
 ├── .eslintrc.cjs                             # ESLint React + TS + Accessibility rules
+├── .gitignore                                # Secure environment & build exclusions
 ├── .prettierrc                               # Code style formatting rules
-├── README.md                                 # Project documentation
-├── ADR.md                                    # Architecture Decision Records
-└── package.json
+├── index.html                                # Root HTML5 entry point
+├── package.json                              # Dependencies & scripts
+├── pnpm-lock.yaml                            # Deterministic package lockfile
+├── tailwind.config.cjs                       # Tailwind CSS & DaisyUI theme configuration
+├── tsconfig.json                             # Strict TypeScript configuration
+├── vercel.json                               # Vercel deployment & security headers
+└── vite.config.ts                            # Vite 5 build pipeline & Workbox config
 ```
 
 ---
@@ -111,7 +120,6 @@ weather_app/
 - **Package Manager**: `pnpm` (`>= 8.0.0` recommended)
 
 ### 1. Installation
-Clone the repository and install dependencies:
 ```bash
 git clone https://github.com/MdMuzahid07/Weather_APP_ReactJS.git
 cd Weather_APP_ReactJS
@@ -119,24 +127,22 @@ pnpm install
 ```
 
 ### 2. Development Server
-Start the local development server with Vite hot-module replacement (HMR):
+Start the local development server with Vite Hot Module Replacement (HMR):
 ```bash
 pnpm dev
 ```
-Open your browser and navigate to `http://localhost:5173/`.
+Navigate to `http://localhost:5173/` in your browser.
 
 ### 3. Type Checking & Code Quality
-Run strict TypeScript compilation check and ESLint analysis:
 ```bash
-# Type check without emitting files
+# Type check TypeScript codebase
 pnpm typecheck
 
-# ESLint audit (React Hooks, TypeScript & Accessibility rules)
+# Run ESLint (React Hooks, TypeScript & Accessibility rules)
 pnpm lint
 ```
 
-### 4. Production Build & Preview
-Build the production bundle with gzip and Brotli compression:
+### 4. Production Build & Deployment Preview
 ```bash
 # Compile TypeScript & bundle production assets
 pnpm build
@@ -147,36 +153,28 @@ pnpm preview
 
 ---
 
-## 🔒 Security & Performance Standards
+## 🔒 Security & Standards Compliance
 
-### Security Hardening
-1. **Content Security Policy (CSP)**: Configured in `index.html` to restrict script execution and prevent XSS attacks.
-2. **Zero API Key Exposure**: All weather data is fetched from keyless public endpoints (`api.open-meteo.com`).
-3. **Input Sanitization**: User search inputs are sanitized and escaped before dispatching network calls.
-4. **Isolated Error Boundaries**: Components are wrapped in `<ErrorBoundary />` containers to prevent single-widget failures from crashing the app.
+The application has undergone security verification against **OWASP Top 10 (2021)** and **OWASP ASVS Level 2**:
 
-### Performance Optimization
-- **Code Splitting**: `Chart` and `WeatherSlider` components are dynamically loaded via `React.lazy()` + `<Suspense />`.
-- **Vendor Chunk Splitting**: Configured `manualChunks` in `vite.config.ts` (`vendor-react`, `vendor-recharts`, `vendor-lucide`, `vendor-state`).
-- **Asset Compression**: Automatic `.gz` and `.br` asset pre-compression via `vite-plugin-compression`.
-- **Web Vitals Monitoring**: Live tracking of CLS, LCP, INP, FCP, and TTFB via `reportWebVitals.ts`.
+1. **HTTP Security Headers (`vercel.json`)**:
+   - `Content-Security-Policy`: Restricts script/connect sources strictly to `'self'` and Open-Meteo API endpoints (`https://api.open-meteo.com`, `https://geocoding-api.open-meteo.com`).
+   - `X-Frame-Options: DENY`: Prevents clickjacking and framing attacks.
+   - `X-Content-Type-Options: nosniff`: Mitigates MIME-sniffing vulnerabilities.
+   - `Referrer-Policy: strict-origin-when-cross-origin`: Controls referrer leakage.
+   - `Permissions-Policy`: Restricts camera, microphone, and payment APIs; allows `geolocation=(self)`.
+2. **Zero Secrets / Keyless Architecture**: No API keys, tokens, or credentials are hardcoded or embedded in client bundles.
+3. **Client-Side Injection (XSS) Prevention**: Zero usage of `dangerouslySetInnerHTML`, `innerHTML`, or `eval`. Input queries are sanitized with regex and URI encoding.
+4. **Volatile Geolocation Handling**: User coordinates retrieved via `navigator.geolocation` are kept in runtime Zustand memory only and never persisted to storage or third-party servers.
+5. **Supply Chain Hygiene**: Test harnesses isolated in `devDependencies`; production sourcemaps disabled (`sourcemap: false`).
 
 ---
 
 ## ♿ Accessibility (WCAG 2.1 AA)
 
-- **Keyboard Navigation**: Full tab navigation support with visible focus rings (`focus-visible:ring-2 focus-visible:ring-sky-400`).
-- **Screen Reader Support**: ARIA attributes (`aria-label`, `role="tablist"`, `role="dialog"`, `aria-live="polite"`).
-- **Reduced Motion**: All CSS micro-animations use `motion-safe` rules respecting user OS `prefers-reduced-motion` settings.
-
----
-
-## 📖 Architecture Decision Records (ADRs)
-
-Key architectural decisions are documented in detail in [ADR.md](ADR.md):
-- **ADR 1**: Service Worker runtime caching via `vite-plugin-pwa` (Workbox).
-- **ADR 2**: Keyless Open-Meteo API integration.
-- **ADR 3**: Centralized state management using Zustand 5.
+- **Keyboard Navigation**: Full keyboard navigation support with focus indicator rings.
+- **Screen Reader Support**: Semantic HTML5 hierarchy with ARIA labels (`aria-label`, `role="tablist"`, `role="dialog"`).
+- **Motion Safety**: CSS animations adhere to `motion-safe` rules respecting user OS `prefers-reduced-motion` settings.
 
 ---
 

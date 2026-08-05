@@ -101,7 +101,7 @@ export default defineConfig({
   build: {
     target: 'es2022',
     sourcemap: false,
-    minify: 'terser',
+    minify: 'esbuild',
     cssCodeSplit: true,
     rollupOptions: {
       output: {
