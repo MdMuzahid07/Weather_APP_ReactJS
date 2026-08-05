@@ -1,32 +1,183 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
   margin: 0;
   padding: 0;
-  background-color: #b5d8ff;
   box-sizing: border-box;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.main_container {
-  width: 1000px;
-  empty-cells: 700px;
+/* ==========================================================================
+   DARK THEME SYSTEM (Midnight Glass & Hero Mesh Grid)
+   ========================================================================== */
+.dark-theme body {
+  background-color: #070A12;
+  color: #F8FAFC;
 }
 
-.dashboard {
-  background-color: #e4f1ff;
+.dark-theme .glass-panel {
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.7);
 }
 
-.bg-img {
-  background-image: url("https://img.freepik.com/free-vector/nature-scene-with-river-hills-forest-mountain-landscape-flat-cartoon-style-illustration_1150-37326.jpg?w=1380&t=st=1662826065~exp=1662826665~hmac=9a71fbb78f6b249feaa9d4b2062ad12a5cdae2fc8d09e56683c4c5f78d7c6293");
+.dark-theme .glass-card {
+  background: rgba(30, 41, 59, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: #F8FAFC;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark-theme .glass-card:hover {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 0 12px 32px -8px rgba(56, 189, 248, 0.2);
+}
+
+.dark-theme .bg-ambient-gradient {
+  background-color: #070A12;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.15) 0%, transparent 45%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+
+/* ==========================================================================
+   LIGHT THEME SYSTEM (Atmospheric Sky & Soft Hero Pattern)
+   ========================================================================== */
+.light-theme body {
+  background-color: #E2EBF8;
+  color: #0F172A;
+}
+
+.light-theme .glass-panel {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 25px 60px -10px rgba(148, 163, 184, 0.35);
+}
+
+.light-theme .glass-card {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  color: #0F172A;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.light-theme .glass-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 12px 28px -6px rgba(148, 163, 184, 0.3);
+}
+
+.light-theme .bg-ambient-gradient {
+  background-color: #E2EBF8;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 85% 85%, rgba(147, 197, 253, 0.35) 0%, transparent 50%),
+    radial-gradient(circle, rgba(14, 165, 233, 0.12) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 28px 28px;
+}
+
+/* ==========================================================================
+   MICRO-ANIMATIONS & SHIMMER SKELETON
+   ========================================================================== */
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatCloud {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes rainPulse {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.6; transform: translateY(2px); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+.animate-float {
+  animation: floatCloud 3.5s ease-in-out infinite;
+}
+
+.animate-rain {
+  animation: rainPulse 1.8s ease-in-out infinite;
+}
+
+/* Shimmer Loading Animation */
+@keyframes shimmerWave {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.22) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  animation: shimmerWave 1.8s infinite;
+}
+
+.light-theme .shimmer-card::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.4) 20%,
+    rgba(255, 255, 255, 0.7) 60%,
+    rgba(255, 255, 255, 0)
+  );
+}
+
+/* 100% Guaranteed Local Hero Pine Forest Mountain Landscape Background */
+.bg-hero-nature {
+  background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.35), rgba(15, 23, 42, 0.85)), url("/hero-landscape.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+}
+
+/* Custom Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

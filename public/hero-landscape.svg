@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" width="800" height="1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0B132B" />
+      <stop offset="35%" stop-color="#1C2541" />
+      <stop offset="70%" stop-color="#3A506B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Mountain Layer 1 -->
+    <linearGradient id="mount1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C3E50" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#1A252F" stop-opacity="0.95" />
+    </linearGradient>
+
+    <!-- Mountain Layer 2 -->
+    <linearGradient id="mount2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1F2937" />
+      <stop offset="100%" stop-color="#111827" />
+    </linearGradient>
+
+    <!-- Mist Gradient -->
+    <linearGradient id="mist" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="800" height="1200" fill="url(#skyGrad)" />
+
+  <!-- Stars -->
+  <g fill="#FFFFFF" opacity="0.6">
+    <circle cx="120" cy="150" r="1.5" />
+    <circle cx="280" cy="80" r="2" />
+    <circle cx="450" cy="180" r="1" />
+    <circle cx="620" cy="100" r="2.5" />
+    <circle cx="710" cy="220" r="1.5" />
+    <circle cx="200" cy="300" r="1" />
+    <circle cx="550" cy="320" r="2" />
+  </g>
+
+  <!-- Distant Glowing Moon/Sun Halo -->
+  <circle cx="600" cy="220" r="80" fill="#38BDF8" opacity="0.15" />
+  <circle cx="600" cy="220" r="45" fill="#E0F2FE" opacity="0.7" />
+
+  <!-- Far Mountain Peaks -->
+  <polygon points="-50,700 150,450 350,620 550,400 750,580 850,700" fill="url(#mount1)" />
+  
+  <!-- Mid Mountain Range -->
+  <polygon points="-50,800 100,580 300,720 500,520 700,680 850,800" fill="url(#mount2)" />
+
+  <!-- Atmospheric Mist Glow -->
+  <rect y="550" width="800" height="300" fill="url(#mist)" />
+
+  <!-- Pine Tree Silhouettes Layer 1 (Back) -->
+  <g fill="#0D1527" opacity="0.85">
+    <polygon points="40,820 60,740 80,820" />
+    <polygon points="120,850 145,760 170,850" />
+    <polygon points="220,830 240,750 260,830" />
+    <polygon points="340,860 365,770 390,860" />
+    <polygon points="480,840 505,730 530,840" />
+    <polygon points="610,850 635,760 660,850" />
+    <polygon points="720,830 740,750 760,830" />
+  </g>
+
+  <!-- Dense Foreground Pine Forest Silhouettes -->
+  <g fill="#080C14">
+    <!-- Tree 1 -->
+    <polygon points="10,1200 50,850 90,1200" />
+    <polygon points="25,950 50,870 75,950" />
+    <polygon points="30,1020 50,930 70,1020" />
+
+    <!-- Tree 2 -->
+    <polygon points="110,1200 160,800 210,1200" />
+    <polygon points="125,930 160,830 195,930" />
+    <polygon points="135,1010 160,910 185,1010" />
+
+    <!-- Tree 3 -->
+    <polygon points="240,1200 280,880 320,1200" />
+    <polygon points="250,970 280,890 310,970" />
+
+    <!-- Tree 4 -->
+    <polygon points="350,1200 410,780 470,1200" />
+    <polygon points="370,910 410,810 450,910" />
+    <polygon points="380,990 410,890 440,990" />
+
+    <!-- Tree 5 -->
+    <polygon points="500,1200 550,830 600,1200" />
+    <polygon points="515,950 550,850 585,950" />
+
+    <!-- Tree 6 -->
+    <polygon points="630,1200 680,790 730,1200" />
+    <polygon points="645,920 680,810 715,920" />
+    <polygon points="655,1000 680,900 705,1000" />
+
+    <!-- Tree 7 -->
+    <polygon points="730,1200 770,860 810,1200" />
+  </g>
+</svg>
