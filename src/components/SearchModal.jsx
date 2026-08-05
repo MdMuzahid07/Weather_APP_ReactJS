@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useWeather } from '../context/WeatherContext';
-import { Search, MapPin, X, Navigation } from 'lucide-react';
+import { MapPin, Navigation, Search, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { useWeather } from '../context/WeatherContext.tsx';
 
 const SearchModal = () => {
-  const { isSearchOpen, setIsSearchOpen, selectLocation, searchCities, fetchUserLocation } = useWeather();
+  const { isSearchOpen, setIsSearchOpen, selectLocation, searchCities, fetchUserLocation } =
+    useWeather();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [searching, setSearching] = useState(false);
@@ -26,7 +27,7 @@ const SearchModal = () => {
   if (!isSearchOpen) return null;
 
   const popularCities = [
-    { name: 'New York', country: 'United States', latitude: 40.7128, longitude: -74.0060 },
+    { name: 'New York', country: 'United States', latitude: 40.7128, longitude: -74.006 },
     { name: 'London', country: 'United Kingdom', latitude: 51.5074, longitude: -0.1278 },
     { name: 'Tokyo', country: 'Japan', latitude: 35.6762, longitude: 139.6503 },
     { name: 'Paris', country: 'France', latitude: 48.8566, longitude: 2.3522 },
@@ -99,10 +100,16 @@ const SearchModal = () => {
             ))}
           </div>
         ) : query.trim() ? (
-          !searching && <p className="text-center py-6 text-slate-400 text-sm">No cities found matching "{query}"</p>
+          !searching && (
+            <p className="text-center py-6 text-slate-400 text-sm">
+              No cities found matching "{query}"
+            </p>
+          )
         ) : (
           <div>
-            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Popular Cities</p>
+            <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">
+              Popular Cities
+            </p>
             <div className="grid grid-cols-2 gap-2">
               {popularCities.map((city) => (
                 <button
