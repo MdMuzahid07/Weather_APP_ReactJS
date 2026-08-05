@@ -6,7 +6,9 @@ const Header = () => {
     const { location, fetchUserLocation, theme, toggleTheme } = useWeatherStore();
 
     return (
-        <header className='flex flex-wrap justify-between items-center mb-4 gap-2 shrink-0 border-b border-slate-700/50 pb-3 transition-colors'>
+        <header className={`flex flex-wrap justify-between items-center px-4 md:px-5 pt-4 pb-3 mb-0 gap-2 shrink-0 border-b transition-colors ${
+            theme === 'dark' ? 'border-slate-700/50 bg-slate-900/60' : 'border-slate-200/80 bg-slate-50/95'
+        }`}>
             <div>
                 <div className='flex items-center gap-2'>
                     <h2 className={`font-extrabold text-lg md:text-xl tracking-tight ${theme === 'dark' ? 'text-slate-100' : 'text-gray-900'}`}>
@@ -50,7 +52,7 @@ const Header = () => {
                     href="https://open-meteo.com/en/pricing"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
+                    className={`hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer border ${
                         theme === 'dark'
                             ? 'bg-emerald-500/10 hover:bg-emerald-500/20 border-emerald-500/30 text-emerald-400'
                             : 'bg-emerald-50 hover:bg-emerald-100 border-emerald-200 text-emerald-700'

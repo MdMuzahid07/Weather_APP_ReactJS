@@ -23,7 +23,7 @@ const Home = () => {
             <div className={`w-full max-w-6xl h-full md:h-[94vh] max-h-[920px] mx-auto flex flex-col md:flex-row glass-panel rounded-none md:rounded-3xl border-0 md:border shadow-2xl overflow-hidden transition-all duration-300 ${
                 theme === 'dark' ? 'border-slate-800/80' : 'border-slate-200/80'
             }`}>
-                {/* Left Sidebar (Hero Weather View with 100% Local Vector Pine Forest Mountain Landscape) */}
+                {/* Left Sidebar (Hero Weather View) */}
                 <div
                     className="w-full md:w-5/12 lg:w-4/12 p-6 text-white flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-800/80 shrink-0 overflow-hidden shadow-xl"
                     style={{
@@ -37,16 +37,20 @@ const Home = () => {
                     <WeatherSlider />
                 </div>
 
-                {/* Right Dashboard */}
-                <div className={`w-full md:w-7/12 lg:w-8/12 p-4 md:p-5 flex flex-col justify-between overflow-y-auto md:overflow-hidden flex-1 no-scrollbar transition-colors ${
+                {/* Right Dashboard — Header fixed at top, content scrolls below */}
+                <div className={`w-full md:w-7/12 lg:w-8/12 flex flex-col min-h-0 flex-1 overflow-hidden transition-colors ${
                     theme === 'dark'
                         ? 'bg-slate-900/40 text-slate-100'
                         : 'bg-slate-50/90 text-slate-900'
                 }`}>
+                    {/* Sticky Header with full-width background */}
                     <Header />
-                    <WeatherSummaryCard />
-                    <Chart />
-                    <TodayWeatherDetails />
+                    {/* Scrollable content area */}
+                    <div className="flex-1 min-h-0 overflow-y-auto px-4 md:px-5 pt-4 pb-4 md:pb-5 flex flex-col gap-4">
+                        <WeatherSummaryCard />
+                        <Chart />
+                        <TodayWeatherDetails />
+                    </div>
                 </div>
             </div>
         </>

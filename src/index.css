@@ -173,7 +173,23 @@ body {
   background-position: center;
 }
 
-/* Custom Hide Scrollbar */
+/* Sleek Translucent Custom Scrollbar for Dashboard */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.45);
+}
+
+/* Custom Hide Scrollbar Utility */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }

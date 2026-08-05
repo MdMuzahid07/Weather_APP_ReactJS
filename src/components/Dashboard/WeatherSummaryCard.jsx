@@ -19,7 +19,7 @@ const WeatherSummaryCard = () => {
           </div>
           <div className="h-4 bg-slate-700/40 dark:bg-slate-800 rounded-full w-24"></div>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
           {[...Array(3)].map((_, i) => (
             <div key={i} className={`p-3 rounded-xl border flex items-start gap-3 ${
               theme === 'dark' ? 'bg-slate-800/40 border-slate-700/50' : 'bg-slate-100/70 border-slate-200/80'
@@ -64,7 +64,7 @@ const WeatherSummaryCard = () => {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {/* 1. What to Wear */}
         <div className={`p-3 rounded-xl border flex items-start gap-3 transition-colors ${
           theme === 'dark'
