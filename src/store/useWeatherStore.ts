@@ -54,7 +54,7 @@ export const useWeatherStore = create<WeatherStoreState>((set, get) => ({
     try {
       const data = await fetchWeatherData(location.latitude, location.longitude, unit);
       set({ weatherData: data, loading: false, isOffline: !navigator.onLine });
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error('Error fetching weather data:', err);
       set({
         error: 'Failed to fetch weather data. Showing cached results if available.',
