@@ -1,4 +1,12 @@
-import { LocationItem, ProcessedWeatherData, TemperatureUnit, WmoCondition } from '../types/weather';
+import {
+  LocationItem,
+  OpenMeteoForecastResponse,
+  OpenMeteoGeocodingResponse,
+  OpenMeteoGeocodingResult,
+  ProcessedWeatherData,
+  TemperatureUnit,
+  WmoCondition,
+} from '../types/weather';
 
 const GEOCODING_API_URL = 'https://geocoding-api.open-meteo.com/v1/search';
 const FORECAST_API_URL = 'https://api.open-meteo.com/v1/forecast';
@@ -68,16 +76,16 @@ export const searchCities = async (query: string): Promise<LocationItem[]> => {
     clearTimeout(timeoutId);
 
     if (!res.ok) throw new Error('Failed to search locations');
-    const data = await res.json();
+    const data: OpenMeteoGeocodingResponse = await res.json();
     if (!data.results) return [];
 
-    return data.results.map((item: any) => ({
+    return data.results.map((item: OpenMeteoGeocodingResult) => ({
       name: item.name,
       country: item.country || '',
       latitude: item.latitude,
       longitude: item.longitude,
     }));
-  } catch (err) {
+  } catch (err: unknown) {
     console.error('Error searching cities:', err);
     return [];
   }
@@ -104,7 +112,7 @@ export const fetchWeatherData = async (
   clearTimeout(timeoutId);
 
   if (!res.ok) throw new Error('Failed to fetch weather data from Open-Meteo');
-  const data = await res.json();
+  const data: OpenMeteoForecastResponse = await res.json();
 
   const current = data.current;
   const condition = getWeatherCondition(current.weather_code);

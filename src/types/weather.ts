@@ -95,3 +95,50 @@ export interface WeatherStoreState {
   fetchUserLocation: () => void;
   searchCities: (query: string) => Promise<LocationItem[]>;
 }
+
+export interface OpenMeteoGeocodingResult {
+  id?: number;
+  name: string;
+  latitude: number;
+  longitude: number;
+  country?: string;
+  country_code?: string;
+  admin1?: string;
+}
+
+export interface OpenMeteoGeocodingResponse {
+  results?: OpenMeteoGeocodingResult[];
+}
+
+export interface OpenMeteoForecastResponse {
+  current: {
+    temperature_2m: number;
+    relative_humidity_2m: number;
+    apparent_temperature: number;
+    precipitation?: number;
+    rain?: number;
+    showers?: number;
+    weather_code: number;
+    cloud_cover?: number;
+    wind_speed_10m: number;
+    uv_index?: number;
+  };
+  hourly?: {
+    time: string[];
+    temperature_2m: number[];
+    precipitation_probability: number[];
+    precipitation?: number[];
+    uv_index?: number[];
+    weather_code?: number[];
+  };
+  daily?: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    sunrise?: string[];
+    sunset?: string[];
+    precipitation_sum?: number[];
+    uv_index_max?: number[];
+  };
+}
