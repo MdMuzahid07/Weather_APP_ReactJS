@@ -1,8 +1,20 @@
+import { useEffect } from 'react';
 import Home from './pages/Home';
 import { useWeatherStore } from './store/useWeatherStore';
 
 function App() {
   const theme = useWeatherStore((state) => state.theme);
+
+  useEffect(() => {
+    const themeClass = theme === 'dark' ? 'dark-theme' : 'light-theme';
+    document.documentElement.className = themeClass;
+    document.body.className = themeClass;
+
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', theme === 'dark' ? '#242736' : '#DDE4F0');
+    }
+  }, [theme]);
 
   return (
     <main
