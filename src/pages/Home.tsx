@@ -3,6 +3,7 @@ import Chart from '../components/Dashboard/Chart';
 import Header from '../components/Dashboard/Header';
 import TodayWeatherDetails from '../components/Dashboard/WeatherDetails/TodayWeatherDetails';
 import WeatherSummaryCard from '../components/Dashboard/WeatherSummaryCard';
+import ErrorBoundary from '../components/ErrorBoundary';
 import SearchModal from '../components/SearchModal';
 import WeatherLocation from '../components/WeatherView/WeatherLocation';
 import WeatherSlider from '../components/WeatherView/WeatherSlider';
@@ -35,7 +36,9 @@ const Home = () => {
         >
           <WeatherViewHeader />
           <WeatherLocation />
-          <WeatherSlider />
+          <ErrorBoundary fallbackTitle="Forecast Slider Unavailable">
+            <WeatherSlider />
+          </ErrorBoundary>
         </div>
 
         <div
@@ -45,9 +48,15 @@ const Home = () => {
         >
           <Header />
           <div className="flex-1 min-h-0 overflow-y-auto px-4 md:px-5 pt-4 pb-4 md:pb-5 flex flex-col gap-4">
-            <WeatherSummaryCard />
-            <Chart />
-            <TodayWeatherDetails />
+            <ErrorBoundary fallbackTitle="Daily Insights Unavailable">
+              <WeatherSummaryCard />
+            </ErrorBoundary>
+            <ErrorBoundary fallbackTitle="24-Hour Forecast Chart Unavailable">
+              <Chart />
+            </ErrorBoundary>
+            <ErrorBoundary fallbackTitle="Today's Weather Details Unavailable">
+              <TodayWeatherDetails />
+            </ErrorBoundary>
           </div>
         </div>
       </div>

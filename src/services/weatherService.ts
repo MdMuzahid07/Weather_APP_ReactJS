@@ -137,18 +137,19 @@ export const fetchWeatherData = async (
   // Format hourly forecast (next 24 hours)
   const hourly: ProcessedWeatherData['hourly'] = [];
   if (data.hourly && data.hourly.time) {
-    const currentHourIndex = data.hourly.time.findIndex((t: string) => new Date(t) >= new Date()) || 0;
+    const { time, temperature_2m, precipitation_probability, uv_index = [] } = data.hourly;
+    const currentHourIndex = time.findIndex((t: string) => new Date(t) >= new Date()) || 0;
     const sliceIndex = Math.max(0, currentHourIndex);
-    const hours24 = data.hourly.time.slice(sliceIndex, sliceIndex + 24);
+    const hours24 = time.slice(sliceIndex, sliceIndex + 24);
 
     hours24.forEach((timeStr: string, idx: number) => {
       const actualIdx = sliceIndex + idx;
       const hourDate = new Date(timeStr);
       hourly.push({
         time: hourDate.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true }),
-        temp: Math.round(data.hourly.temperature_2m[actualIdx]),
-        rainChance: data.hourly.precipitation_probability[actualIdx] || 0,
-        uv: Math.round(data.hourly.uv_index[actualIdx] || 0),
+        temp: Math.round(temperature_2m[actualIdx]),
+        rainChance: precipitation_probability[actualIdx] || 0,
+        uv: Math.round(uv_index[actualIdx] || 0),
       });
     });
   }
