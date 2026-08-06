@@ -1,12 +1,22 @@
 import { MapPin, Navigation, Search, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useWeather } from '../context/WeatherContext.tsx';
+import { useWeather } from '../context/WeatherContext';
+import { LocationItem } from '../types/weather';
+
+const POPULAR_CITIES: LocationItem[] = [
+  { name: 'New York', country: 'United States', latitude: 40.7128, longitude: -74.006 },
+  { name: 'London', country: 'United Kingdom', latitude: 51.5074, longitude: -0.1278 },
+  { name: 'Tokyo', country: 'Japan', latitude: 35.6762, longitude: 139.6503 },
+  { name: 'Paris', country: 'France', latitude: 48.8566, longitude: 2.3522 },
+  { name: 'Dhaka', country: 'Bangladesh', latitude: 23.8103, longitude: 90.4125 },
+  { name: 'Sydney', country: 'Australia', latitude: -33.8688, longitude: 151.2093 },
+];
 
 const SearchModal = () => {
   const { isSearchOpen, setIsSearchOpen, selectLocation, searchCities, fetchUserLocation } =
     useWeather();
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<LocationItem[]>([]);
   const [searching, setSearching] = useState(false);
 
   useEffect(() => {
@@ -26,15 +36,6 @@ const SearchModal = () => {
 
   if (!isSearchOpen) return null;
 
-  const popularCities = [
-    { name: 'New York', country: 'United States', latitude: 40.7128, longitude: -74.006 },
-    { name: 'London', country: 'United Kingdom', latitude: 51.5074, longitude: -0.1278 },
-    { name: 'Tokyo', country: 'Japan', latitude: 35.6762, longitude: 139.6503 },
-    { name: 'Paris', country: 'France', latitude: 48.8566, longitude: 2.3522 },
-    { name: 'Dhaka', country: 'Bangladesh', latitude: 23.8103, longitude: 90.4125 },
-    { name: 'Sydney', country: 'Australia', latitude: -33.8688, longitude: 151.2093 },
-  ];
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-md p-4 animate-fadeIn">
       <div className="glass-panel rounded-3xl p-6 w-full max-w-lg shadow-2xl transition-all border border-slate-800 text-slate-100">
@@ -50,7 +51,6 @@ const SearchModal = () => {
           </button>
         </div>
 
-        {/* Search Input */}
         <div className="relative mb-4">
           <input
             type="text"
@@ -68,7 +68,6 @@ const SearchModal = () => {
           )}
         </div>
 
-        {/* GPS Button */}
         <button
           onClick={() => {
             fetchUserLocation();
@@ -80,20 +79,17 @@ const SearchModal = () => {
           Use My Current Location (GPS)
         </button>
 
-        {/* Search Results */}
         {results.length > 0 ? (
           <div className="max-h-60 overflow-y-auto space-y-1.5 pr-1">
             {results.map((city) => (
               <button
-                key={city.id}
+                key={`${city.name}-${city.latitude}-${city.longitude}`}
                 onClick={() => selectLocation(city)}
                 className="w-full text-left p-3 rounded-xl bg-slate-800/40 hover:bg-slate-800 flex justify-between items-center transition-colors border border-slate-800 hover:border-sky-500/30"
               >
                 <div>
                   <p className="font-bold text-slate-100 text-sm">{city.name}</p>
-                  <p className="text-xs text-slate-400">
-                    {[city.admin1, city.country].filter(Boolean).join(', ')}
-                  </p>
+                  <p className="text-xs text-slate-400">{city.country}</p>
                 </div>
                 <span className="text-sky-400 font-bold text-xs">Select →</span>
               </button>
@@ -102,7 +98,7 @@ const SearchModal = () => {
         ) : query.trim() ? (
           !searching && (
             <p className="text-center py-6 text-slate-400 text-sm">
-              No cities found matching "{query}"
+              No cities found matching &quot;{query}&quot;
             </p>
           )
         ) : (
@@ -111,7 +107,7 @@ const SearchModal = () => {
               Popular Cities
             </p>
             <div className="grid grid-cols-2 gap-2">
-              {popularCities.map((city) => (
+              {POPULAR_CITIES.map((city) => (
                 <button
                   key={city.name}
                   onClick={() => selectLocation(city)}

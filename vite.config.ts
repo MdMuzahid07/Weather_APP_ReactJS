@@ -4,9 +4,6 @@ import { VitePWA } from 'vite-plugin-pwa';
 import compression from 'vite-plugin-compression';
 
 export default defineConfig({
-  resolve: {
-    extensions: ['.tsx', '.ts', '.jsx', '.js', '.json'],
-  },
   plugins: [
     react(),
     compression({
